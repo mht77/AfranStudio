@@ -124,11 +124,12 @@
     if (!slot) return;
     var over = slot.getAttribute("data-header") === "over";
 
+    // RTL: the menu button comes first (right edge), the logo second (left edge).
     var header = el("header", { class: "site-header" + (over ? " site-header--over" : "") }, [
-      el("a", { class: "logo" + (over ? "" : " logo--light"), href: "index.html", "aria-label": "استودیو طراحی افران، صفحه اصلی",
-        html: logoSvg() + '<span class="logo__word"><span class="logo__name">AFRAN</span><span class="logo__line"></span><span class="logo__sub">DESIGN STUDIO</span></span>' }),
       el("button", { class: "menu-toggle", type: "button", "aria-expanded": "false", "aria-controls": "site-menu",
-        html: '<span class="menu-toggle__label">منو</span><span class="menu-toggle__bars" aria-hidden="true"><span></span><span></span></span>' })
+        html: '<span class="menu-toggle__bars" aria-hidden="true"><span></span><span></span></span><span class="menu-toggle__label">منو</span>' }),
+      el("a", { class: "logo" + (over ? "" : " logo--light"), href: "index.html", "aria-label": "استودیو طراحی افران، صفحه اصلی",
+        html: logoSvg() + '<span class="logo__word"><span class="logo__name">AFRAN</span><span class="logo__line"></span><span class="logo__sub">DESIGN STUDIO</span></span>' })
     ]);
     slot.replaceWith(header);
 
@@ -147,10 +148,10 @@
 
     var panel = el("div", { class: "menu__panel", role: "dialog", "aria-modal": "true", "aria-label": "منو" }, [
       el("div", { class: "menu__top" }, [
-        el("a", { class: "logo logo--light", href: "index.html", "aria-label": "صفحه اصلی",
-          html: logoSvg() + '<span class="logo__word"><span class="logo__name">AFRAN</span><span class="logo__line"></span><span class="logo__sub">DESIGN STUDIO</span></span>' }),
         el("button", { class: "menu__close", type: "button",
-          html: 'بستن <svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 3l14 14M17 3L3 17" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>' })
+          html: '<svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 3l14 14M17 3L3 17" stroke="currentColor" stroke-width="1.2" fill="none"/></svg> بستن' }),
+        el("a", { class: "logo logo--light", href: "index.html", "aria-label": "صفحه اصلی",
+          html: logoSvg() + '<span class="logo__word"><span class="logo__name">AFRAN</span><span class="logo__line"></span><span class="logo__sub">DESIGN STUDIO</span></span>' })
       ]),
       nav,
       el("div", { class: "menu__contact" }, [
@@ -203,8 +204,9 @@
     var footer = el("footer", { class: "site-footer" }, [
       el("div", { class: "container site-footer__inner" }, [
         el("div", { class: "site-footer__cols" }, [
-          el("div", { class: "footer-brand",
-            html: logoSvg() + '<span class="footer-brand__word"><span class="footer-brand__name">AFRAN</span><span class="footer-brand__line"></span><span class="footer-brand__sub">DESIGN STUDIO</span></span>' }),
+          el("div", { class: "footer-brand" }, [
+            el("img", { src: "assets/images/site/logo-white.svg", alt: "استودیو طراحی و معماری افران", width: "240", height: "377" })
+          ]),
           el("div", { class: "footer-col" }, [
             el("span", { class: "footer-col__title", text: "استودیو" }),
             el("span", { class: "pre-line", text: c.address || "" })

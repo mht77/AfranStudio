@@ -117,7 +117,7 @@ ol, ul { padding: 0; list-style: none; }
 }
 .menu-toggle__bars { display: flex; flex-direction: column; gap: 6px; width: 26px; }
 .menu-toggle__bars span { height: 1px; background: currentColor; }
-.menu-toggle__bars span:last-child { width: 70%; align-self: flex-end; }
+.menu-toggle__bars span:last-child { width: 70%; align-self: flex-start; }
 
 /* ---------- Side-panel menu ---------- */
 .menu { position: fixed; inset: 0; z-index: 50; visibility: hidden; }
@@ -240,14 +240,8 @@ a.service:hover { background: var(--stone); opacity: 1; }
 .site-footer { background: var(--graphite); color: #fff; }
 .site-footer__inner { padding-block: 96px 40px; display: flex; flex-direction: column; gap: 80px; }
 .site-footer__cols { display: flex; flex-wrap: wrap; gap: 56px; justify-content: space-between; }
-.footer-brand { flex: 1 1 260px; display: flex; flex-direction: column; align-items: flex-end; gap: 26px; direction: ltr; font-family: var(--font-logo); }
-.footer-brand svg { width: 72px; height: 78px; }
-.footer-brand .b-g { fill: var(--sage); }
-.footer-brand .b-w { fill: #fff; }
-.footer-brand__word { display: flex; flex-direction: column; gap: 6px; width: 160px; }
-.footer-brand__name { font-size: 26px; font-weight: 700; letter-spacing: .32em; line-height: 1; }
-.footer-brand__line { height: 1px; background: #fff; }
-.footer-brand__sub { font-size: 11.5px; font-weight: 700; letter-spacing: .18em; line-height: 1; }
+.footer-brand { flex: 1 1 260px; }
+.footer-brand img { width: 128px; height: auto; }
 .footer-col { flex: 1 1 180px; display: flex; flex-direction: column; gap: 12px; font-size: 15px; line-height: 1.9; }
 .footer-col__title { font-size: 13px; font-weight: 500; color: var(--sage-mist); margin-bottom: 4px; }
 .site-footer__bottom { display: flex; flex-wrap: wrap; gap: 16px 40px; justify-content: space-between; padding-top: 28px; border-top: 1px solid var(--line-light); font-size: 13px; font-weight: 400; }
@@ -410,8 +404,8 @@ label.chip:has(input:focus-visible) { outline: 2px solid var(--sage-deep); outli
   .quote-band { height: 520px; }
   .principle { padding-left: 0; }
   .site-footer__inner { padding-block: 64px 32px; gap: 56px; }
-  .footer-brand { align-items: flex-start; direction: rtl; }
-  .footer-brand__word, .footer-brand svg { direction: ltr; }
+  .footer-brand img { width: 104px; }
+  .menu__panel { width: 100%; padding: 22px var(--header-pad) 32px; }
 }
 @media (max-width: 520px) {
   .logo__name { font-size: 16px; }
