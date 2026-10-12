@@ -1,0 +1,264 @@
+# Pages CMS configuration — https://pagescms.org/docs/configuration/
+# Only the content of the site is editable here (texts, images, projects, team, contact details).
+# Navigation, footer links and form labels are part of the templates and change in code.
+
+media:
+  input: assets/images
+  output: assets/images
+  categories: [image]
+
+content:
+  - name: projects
+    label: پروژه‌ها (Projects)
+    type: file
+    path: content/projects.json
+    format: json
+    fields:
+      - name: intro
+        label: متن معرفی صفحه پروژه‌ها
+        type: text
+      - name: projects
+        label: پروژه‌ها
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{title} — {location}"
+        fields:
+          - name: slug
+            label: شناسه در آدرس (انگلیسی، بدون فاصله)
+            description: e.g. glass-office → project.html?p=glass-office
+            type: string
+            required: true
+            pattern:
+              regex: "^[a-z0-9-]+$"
+              message: فقط حروف کوچک انگلیسی، عدد و خط تیره
+          - name: title
+            label: عنوان
+            type: string
+            required: true
+          - name: location
+            label: موقعیت
+            type: string
+          - name: category
+            label: خدمت / دسته
+            description: Must match a service id in "Site settings → Services".
+            type: select
+            required: true
+            options:
+              values:
+                - { value: structural, label: طراحی سازه }
+                - { value: residential, label: فضای مسکونی }
+                - { value: urban, label: برنامه‌ریزی شهری }
+                - { value: interior, label: طراحی داخلی }
+          - name: featured
+            label: نمایش در صفحه اصلی
+            type: boolean
+          - name: cover
+            label: تصویر کارت
+            type: image
+          - name: cover_alt
+            label: توضیح تصویر کارت (alt)
+            type: string
+          - name: hero
+            label: تصویر بالای صفحه پروژه
+            type: image
+          - name: hero_alt
+            label: توضیح تصویر بالای صفحه (alt)
+            type: string
+          - name: summary
+            label: جمله اصلی (خلاصه)
+            type: text
+          - name: description
+            label: شرح پروژه
+            description: Separate paragraphs with an empty line.
+            type: text
+          - name: facts
+            label: مشخصات
+            type: object
+            list: true
+            fields:
+              - { name: label, label: عنوان, type: string }
+              - { name: value, label: مقدار, type: string }
+          - name: gallery
+            label: گالری (اسلایدشو)
+            type: object
+            list: true
+            fields:
+              - { name: image, label: تصویر, type: image }
+              - { name: alt, label: توضیح تصویر (alt), type: string }
+              - { name: caption, label: زیرنویس, type: string }
+          - name: quote
+            label: نقل‌قول (اختیاری)
+            type: text
+          - name: quote_author
+            label: گوینده نقل‌قول
+            type: string
+
+  - name: home
+    label: صفحه اصلی (Home)
+    type: file
+    path: content/home.json
+    format: json
+    fields:
+      - name: hero
+        label: بخش بالای صفحه
+        type: object
+        fields:
+          - { name: title, label: عنوان بزرگ, type: string }
+          - { name: subtitle, label: زیرعنوان, type: string }
+          - { name: image, label: تصویر, type: image }
+          - { name: image_alt, label: توضیح تصویر (alt), type: string }
+      - name: intro
+        label: معرفی
+        type: object
+        fields:
+          - { name: heading, label: تیتر (برای شکستن خط Enter بزنید), type: text }
+          - { name: lead, label: متن اصلی, type: text }
+          - { name: text, label: متن دوم, type: text }
+      - name: projects_heading
+        label: تیتر پروژه‌های منتخب
+        type: string
+      - name: approach
+        label: رویکرد
+        type: object
+        fields:
+          - { name: heading, label: تیتر, type: text }
+          - { name: text, label: متن, type: text }
+          - name: items
+            label: موارد
+            type: object
+            list: true
+            fields:
+              - { name: title, label: عنوان, type: string }
+              - { name: text, label: متن, type: text }
+      - name: services_heading
+        label: تیتر خدمات
+        type: string
+      - name: quote
+        label: نقل‌قول تمام‌عرض
+        type: object
+        fields:
+          - { name: text, label: متن, type: text }
+          - { name: caption, label: زیرنویس, type: string }
+          - { name: image, label: تصویر پس‌زمینه, type: image }
+          - { name: image_alt, label: توضیح تصویر (alt), type: string }
+      - name: cta
+        label: دعوت به تماس
+        type: object
+        fields:
+          - { name: heading, label: تیتر, type: string }
+          - { name: text, label: متن, type: text }
+
+  - name: studio
+    label: استودیو (Studio)
+    type: file
+    path: content/studio.json
+    format: json
+    fields:
+      - { name: heading, label: تیتر, type: text }
+      - { name: text, label: متن معرفی, type: text }
+      - { name: image, label: تصویر, type: image }
+      - { name: image_alt, label: توضیح تصویر (alt), type: string }
+      - { name: mark_text, label: متن درباره نشان, type: text }
+      - name: process
+        label: فرایند
+        type: object
+        fields:
+          - { name: heading, label: تیتر, type: string }
+          - { name: text, label: متن, type: text }
+          - name: steps
+            label: مراحل
+            type: object
+            list: true
+            fields:
+              - { name: title, label: عنوان, type: string }
+              - { name: text, label: متن, type: text }
+      - { name: services_heading, label: تیتر خدمات, type: string }
+      - { name: cta_heading, label: تیتر دعوت به تماس, type: text }
+
+  - name: team
+    label: تیم افران (Team)
+    type: file
+    path: content/team.json
+    format: json
+    fields:
+      - { name: intro, label: متن معرفی, type: text }
+      - { name: image, label: تصویر عریض, type: image }
+      - { name: image_alt, label: توضیح تصویر (alt), type: string }
+      - name: stats
+        label: آمار
+        type: object
+        list: true
+        fields:
+          - { name: value, label: عدد, type: string }
+          - { name: label, label: عنوان, type: string }
+      - name: founder
+        label: بنیان‌گذار
+        type: object
+        fields:
+          - { name: name, label: نام, type: string }
+          - { name: role, label: سمت, type: string }
+          - { name: photo, label: عکس, type: image }
+          - name: bio
+            label: زندگی‌نامه
+            description: Separate paragraphs with an empty line.
+            type: text
+          - { name: tags, label: برچسب‌ها, type: string, list: true }
+          - { name: email, label: ایمیل, type: string }
+          - { name: linkedin, label: لینکدین, type: string }
+      - name: members
+        label: اعضای تیم
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{name} — {role}"
+        fields:
+          - { name: name, label: نام, type: string }
+          - { name: role, label: سمت, type: string }
+          - { name: bio, label: توضیح کوتاه, type: text }
+          - name: photo
+            label: عکس (اختیاری)
+            description: Leave empty to show an illustrated placeholder.
+            type: image
+
+  - name: site
+    label: تنظیمات سایت (Site settings)
+    type: file
+    path: content/site.json
+    format: json
+    fields:
+      - { name: description, label: توضیح سایت برای موتورهای جستجو, type: text }
+      - name: contact
+        label: اطلاعات تماس
+        type: object
+        fields:
+          - { name: address, label: نشانی, type: text }
+          - { name: email, label: ایمیل, type: string }
+          - { name: phone, label: "تلفن (بین‌المللی، مثل ‎+982100000000)", type: string }
+          - { name: phone_display, label: تلفن (نمایشی), type: string }
+          - { name: whatsapp, label: "واتس‌اپ (فقط عدد با کد کشور، مثل 989120000000)", type: string }
+          - { name: whatsapp_display, label: واتس‌اپ (نمایشی), type: string }
+          - { name: instagram, label: لینک اینستاگرام, type: string }
+          - { name: linkedin, label: لینک لینکدین, type: string }
+      - name: services
+        label: خدمات
+        type: object
+        list: true
+        fields:
+          - name: id
+            label: شناسه (برای فیلتر پروژه‌ها)
+            type: select
+            options:
+              values:
+                - { value: structural, label: طراحی سازه }
+                - { value: residential, label: فضای مسکونی }
+                - { value: urban, label: برنامه‌ریزی شهری }
+                - { value: interior, label: طراحی داخلی }
+          - { name: title, label: عنوان, type: string }
+          - { name: text, label: توضیح, type: text }
+      - name: form_endpoint
+        label: آدرس فرم تماس (Formspree)
+        description: e.g. https://formspree.io/f/xxxxxxx — leave empty to fall back to email.
+        type: string

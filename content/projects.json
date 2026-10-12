@@ -1,0 +1,165 @@
+{
+  "intro": "خانه‌ها، فضاهای داخلی، مجموعه‌های شهری و سازه‌ها در سراسر ایران — هر کدام پاسخی به قطعه‌ای خاص از زمین و مردمی که در آن زندگی و کار می‌کنند.",
+  "projects": [
+    {
+      "slug": "glass-office",
+      "title": "ساختمان اداری شیشه‌ای",
+      "location": "تهران، ایران",
+      "category": "structural",
+      "featured": true,
+      "cover": "assets/images/projects/glass-office-cantilever.jpg",
+      "cover_alt": "حجم شیشه‌ای معلق ساختمان اداری",
+      "hero": "assets/images/projects/glass-office-dusk.jpg",
+      "hero_alt": "ساختمان اداری شیشه‌ای در غروب، با میدانی پر از رهگذر",
+      "summary": "حجمی شیشه‌ای که بر پایه‌ای سبک معلق می‌ماند و میدان شهر را زیر سایه خود جای می‌دهد.",
+      "description": "کارفرما ساختمانی اداری می‌خواست که هم شفاف و روشن باشد و هم فضای عمومی پیرامونش را به شهر بازگرداند. پاسخ ما حجمی شیشه‌ای بود که روی پایه‌ای عقب‌نشسته قرار می‌گیرد و میدانی سرپوشیده برای رهگذران می‌سازد.\n\nسازه فولادی با دهانه‌های بلند، طبقات آزاد و انعطاف‌پذیر را ممکن کرده است. نمای دوپوسته با سایبان‌های افقی، نور روز را به عمق ساختمان می‌برد و بار حرارتی تابستان را کاهش می‌دهد.",
+      "facts": [
+        { "label": "موقعیت", "value": "تهران، ایران" },
+        { "label": "کاربری", "value": "اداری" },
+        { "label": "سال", "value": "۱۴۰۲" },
+        { "label": "مساحت", "value": "۱۸٬۵۰۰ متر مربع" },
+        { "label": "وضعیت", "value": "تکمیل‌شده" },
+        { "label": "طراح ارشد", "value": "امیر عابدی" }
+      ],
+      "gallery": [
+        { "image": "assets/images/projects/glass-office-dusk.jpg", "alt": "ساختمان اداری شیشه‌ای در غروب", "caption": "نمای اصلی در غروب" },
+        { "image": "assets/images/projects/glass-office-cantilever.jpg", "alt": "حجم شیشه‌ای معلق با طبقات روشن", "caption": "حجم معلق" },
+        { "image": "assets/images/projects/karaneh-tower-facade.jpg", "alt": "جزئیات نمای شیشه‌ای و سایبان‌های افقی", "caption": "جزئیات نما" },
+        { "image": "assets/images/projects/cultural-plaza.jpg", "alt": "میدان ورودی و طبقه همکف روشن", "caption": "میدان ورودی" }
+      ],
+      "quote": "می‌خواستیم ساختمانی بسازیم که شب‌ها مثل فانوسی برای میدان روشن باشد.",
+      "quote_author": "امیر عابدی، طراح ارشد"
+    },
+    {
+      "slug": "stone-wood-kitchen",
+      "title": "آشپزخانه سنگ و چوب",
+      "location": "تهران، ایران",
+      "category": "interior",
+      "featured": true,
+      "cover": "assets/images/projects/stone-wood-kitchen-table.jpg",
+      "cover_alt": "میز ناهارخوری چوبی کنار جزیره مرمری آشپزخانه",
+      "hero": "assets/images/projects/stone-wood-kitchen.jpg",
+      "hero_alt": "آشپزخانه با کابینت‌های چوب تیره، جزیره مرمری و میز ناهارخوری",
+      "summary": "آشپزخانه‌ای باز که سنگ مرمر، چوب گردو و نور گرم را در یک ترکیب آرام کنار هم می‌نشاند.",
+      "description": "این پروژه بازطراحی آشپزخانه و ناهارخوری یک آپارتمان قدیمی بود. دیوارهای میانی برداشته شد تا آشپزخانه، ناهارخوری و نشیمن یک فضای پیوسته بسازند.\n\nجزیره مرمری با کابینت‌های چوب تیره قاب گرفته شده و نورپردازی پنهان در قفسه‌ها، شب‌ها فضایی گرم و آرام می‌سازد.",
+      "facts": [
+        { "label": "موقعیت", "value": "تهران، ایران" },
+        { "label": "کاربری", "value": "طراحی داخلی" },
+        { "label": "سال", "value": "۱۴۰۳" },
+        { "label": "مساحت", "value": "۶۵ متر مربع" },
+        { "label": "وضعیت", "value": "تکمیل‌شده" }
+      ],
+      "gallery": [
+        { "image": "assets/images/projects/stone-wood-kitchen.jpg", "alt": "نمای کلی آشپزخانه و ناهارخوری", "caption": "آشپزخانه و ناهارخوری" },
+        { "image": "assets/images/projects/stone-wood-kitchen-table.jpg", "alt": "میز ناهارخوری چوبی و صندلی‌های روشن", "caption": "میز ناهارخوری" },
+        { "image": "assets/images/projects/marble-villa.jpg", "alt": "قفسه چوبی و دیوار مرمری", "caption": "جزئیات مرمر و چوب" }
+      ],
+      "quote": "",
+      "quote_author": ""
+    },
+    {
+      "slug": "niavaran-apartment",
+      "title": "آپارتمان نیاوران",
+      "location": "تهران، ایران",
+      "category": "residential",
+      "featured": true,
+      "cover": "assets/images/projects/niavaran-apartment.jpg",
+      "cover_alt": "آشپزخانه و نشیمن آپارتمان با کف چوبی",
+      "hero": "assets/images/projects/niavaran-apartment.jpg",
+      "hero_alt": "آشپزخانه و نشیمن آپارتمان با کف چوبی",
+      "summary": "آپارتمانی روشن که آشپزخانه، نشیمن و ناهارخوری را در یک فضای پیوسته به هم می‌دوزد.",
+      "description": "خانواده‌ای چهارنفره فضایی می‌خواستند که هم برای زندگی روزمره راحت باشد و هم برای مهمانی‌های بزرگ. پلان باز و مصالح گرم، این دو نیاز را کنار هم ممکن کرده است.\n\nدیوارهای سنگی و کف چوبی، فضایی آرام و ماندگار ساخته‌اند که با گذر زمان زیباتر می‌شود.",
+      "facts": [
+        { "label": "موقعیت", "value": "نیاوران، تهران" },
+        { "label": "کاربری", "value": "مسکونی" },
+        { "label": "سال", "value": "۱۴۰۱" },
+        { "label": "مساحت", "value": "۲۲۰ متر مربع" },
+        { "label": "وضعیت", "value": "تکمیل‌شده" }
+      ],
+      "gallery": [
+        { "image": "assets/images/projects/niavaran-apartment.jpg", "alt": "نشیمن و آشپزخانه", "caption": "نشیمن و آشپزخانه" },
+        { "image": "assets/images/projects/stone-wood-kitchen-table.jpg", "alt": "ناهارخوری", "caption": "ناهارخوری" }
+      ],
+      "quote": "",
+      "quote_author": ""
+    },
+    {
+      "slug": "karaneh-tower",
+      "title": "برج اداری کرانه",
+      "location": "کرج، ایران",
+      "category": "structural",
+      "featured": false,
+      "cover": "assets/images/projects/karaneh-tower-facade.jpg",
+      "cover_alt": "جزئیات نمای شیشه‌ای برج اداری",
+      "hero": "assets/images/projects/karaneh-tower-facade.jpg",
+      "hero_alt": "نمای شیشه‌ای برج اداری کرانه",
+      "summary": "برجی اداری با نمای دوپوسته و هسته‌ای بتنی که طبقات را بی‌ستون و آزاد نگه می‌دارد.",
+      "description": "طراحی سازه این برج بر پایه یک هسته بتنی مرکزی و قاب‌های فولادی پیرامونی است؛ ترکیبی که طبقات را بدون ستون میانی آزاد نگه می‌دارد.\n\nنمای دوپوسته با سایبان‌های افقی، هم نور را کنترل می‌کند و هم مصرف انرژی ساختمان را کاهش می‌دهد.",
+      "facts": [
+        { "label": "موقعیت", "value": "کرج، ایران" },
+        { "label": "کاربری", "value": "اداری" },
+        { "label": "سال", "value": "۱۴۰۳" },
+        { "label": "مساحت", "value": "۲۴٬۰۰۰ متر مربع" },
+        { "label": "وضعیت", "value": "در حال اجرا" }
+      ],
+      "gallery": [
+        { "image": "assets/images/projects/karaneh-tower-facade.jpg", "alt": "نمای شیشه‌ای", "caption": "نمای دوپوسته" },
+        { "image": "assets/images/projects/glass-office-cantilever.jpg", "alt": "طبقات روشن", "caption": "طبقات اداری" }
+      ],
+      "quote": "",
+      "quote_author": ""
+    },
+    {
+      "slug": "marble-villa",
+      "title": "ویلای مرمر",
+      "location": "لواسان، ایران",
+      "category": "residential",
+      "featured": false,
+      "cover": "assets/images/projects/marble-villa.jpg",
+      "cover_alt": "قفسه و دیوار مرمری آشپزخانه",
+      "hero": "assets/images/projects/marble-villa.jpg",
+      "hero_alt": "قفسه چوبی و دیوار مرمری ویلا",
+      "summary": "ویلایی آرام در دامنه کوه، با مرمر روشن و چوب تیره در تمام فضاهای داخلی.",
+      "description": "ویلا در زمینی شیب‌دار و رو به دره طراحی شده است. فضاهای اصلی در یک تراز قرار گرفته‌اند تا منظره از همه اتاق‌ها دیده شود.\n\nمرمر روشن و چوب تیره، دو ماده اصلی پروژه‌اند که از نما تا جزئیات داخلی تکرار می‌شوند.",
+      "facts": [
+        { "label": "موقعیت", "value": "لواسان، ایران" },
+        { "label": "کاربری", "value": "مسکونی" },
+        { "label": "سال", "value": "۱۴۰۲" },
+        { "label": "مساحت", "value": "۴۸۰ متر مربع" },
+        { "label": "وضعیت", "value": "تکمیل‌شده" }
+      ],
+      "gallery": [
+        { "image": "assets/images/projects/marble-villa.jpg", "alt": "دیوار مرمری", "caption": "مرمر و چوب" },
+        { "image": "assets/images/projects/stone-wood-kitchen.jpg", "alt": "آشپزخانه", "caption": "آشپزخانه" }
+      ],
+      "quote": "",
+      "quote_author": ""
+    },
+    {
+      "slug": "cultural-plaza",
+      "title": "میدان مجموعه فرهنگی",
+      "location": "اصفهان، ایران",
+      "category": "urban",
+      "featured": false,
+      "cover": "assets/images/projects/cultural-plaza.jpg",
+      "cover_alt": "میدان ورودی مجموعه فرهنگی در غروب",
+      "hero": "assets/images/projects/cultural-plaza.jpg",
+      "hero_alt": "میدان ورودی مجموعه فرهنگی در غروب",
+      "summary": "میدانی شهری که ورودی مجموعه فرهنگی را به خیابان و رود پیوند می‌دهد.",
+      "description": "این پروژه طراحی میدان ورودی و فضاهای باز یک مجموعه فرهنگی است. ردیف درختان، نورپردازی شبانه و کف‌سازی یکپارچه، میدان را به محل مکث و دیدار تبدیل کرده است.\n\nمسیرهای پیاده، ورودی مجموعه را به خیابان و کرانه رود متصل می‌کنند.",
+      "facts": [
+        { "label": "موقعیت", "value": "اصفهان، ایران" },
+        { "label": "کاربری", "value": "فضای شهری" },
+        { "label": "سال", "value": "۱۴۰۲" },
+        { "label": "مساحت", "value": "۹٬۰۰۰ متر مربع" },
+        { "label": "وضعیت", "value": "طراحی" }
+      ],
+      "gallery": [
+        { "image": "assets/images/projects/cultural-plaza.jpg", "alt": "میدان ورودی", "caption": "میدان ورودی" },
+        { "image": "assets/images/projects/glass-office-dusk.jpg", "alt": "نمای کلی مجموعه", "caption": "نمای کلی" }
+      ],
+      "quote": "",
+      "quote_author": ""
+    }
+  ]
+}
