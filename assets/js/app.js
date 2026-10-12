@@ -540,6 +540,23 @@
 
     var form = document.getElementById("contact-form");
     var status = document.getElementById("form-status");
+
+    function messageText(data) {
+      return ["نام: " + data.get("name"), "تماس: " + data.get("contact"), "نوع پروژه: " + data.get("project_type"),
+        "مکان پروژه: " + (data.get("location") || "—"), "", data.get("message")].join("\n");
+    }
+
+    // "Send on WhatsApp": opens a chat with the studio, message pre-filled.
+    var waBtn = document.getElementById("send-whatsapp");
+    if (c.whatsapp) {
+      waBtn.hidden = false;
+      waBtn.addEventListener("click", function () {
+        if (!form.reportValidity()) return;
+        var text = "سلام، درباره یک پروژه پیام می‌دهم.\n\n" + messageText(new FormData(form));
+        window.open(whatsappUrl(c.whatsapp) + "?text=" + encodeURIComponent(text), "_blank", "noopener");
+      });
+    }
+
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       if (!form.reportValidity()) return;
@@ -547,10 +564,8 @@
       if (data.get("_gotcha")) return; // spam trap
       var endpoint = String(site.form_endpoint || "").trim();
       if (!/^https:\/\//.test(endpoint)) { // no form service configured → open the visitor's mail app
-        var body = ["نام: " + data.get("name"), "تماس: " + data.get("contact"), "نوع پروژه: " + data.get("project_type"),
-          "مکان پروژه: " + data.get("location"), "", data.get("message")].join("\n");
         location.href = "mailto:" + (c.email || "") + "?subject=" + encodeURIComponent("پروژه جدید — " + data.get("name")) +
-          "&body=" + encodeURIComponent(body);
+          "&body=" + encodeURIComponent(messageText(data));
         return;
       }
       var btn = form.querySelector("[type=submit]");

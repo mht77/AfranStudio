@@ -393,6 +393,7 @@ a.service:hover { background: var(--stone); opacity: 1; }
 label.chip { display: inline-flex; align-items: center; position: relative; }
 label.chip:has(input:checked) { background: var(--ink); border-color: var(--ink); color: var(--paper); }
 label.chip:has(input:focus-visible) { outline: 2px solid var(--sage-deep); outline-offset: 3px; }
+.form__actions { display: flex; flex-wrap: wrap; gap: 12px; }
 .form__status { font-size: 15px; font-weight: 400; min-height: 1.9em; }
 .form__status.is-ok { color: var(--sage-deep); }
 .form__status.is-error { color: #A33A2B; }

@@ -46,7 +46,10 @@
           <textarea name="message" rows="5" required></textarea>
         </label>
         <label class="hp" aria-hidden="true">نگذارید<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label>
-        <button class="btn" type="submit" style="align-self: flex-start">ارسال پیام <span aria-hidden="true">⟵</span></button>
+        <div class="form__actions">
+          <button class="btn" type="submit">ارسال پیام <span aria-hidden="true">⟵</span></button>
+          <button class="btn btn--outline" type="button" id="send-whatsapp" hidden>ارسال در واتس‌اپ <span aria-hidden="true">↗</span></button>
+        </div>
         <p class="form__status" id="form-status" role="status"></p>
       </form>
     </div>
