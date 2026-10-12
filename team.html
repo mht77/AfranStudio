@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>تیم افران — استودیو افران</title>
+  <meta name="description" content="آشنایی با تیم معماران و طراحان استودیو افران.">
+  <meta name="theme-color" content="#58585A">
+  <link rel="icon" href="assets/images/site/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/vazirmatn-arabic-300-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body data-page="team">
+  <a class="skip-link" href="#main">پرش به محتوا</a>
+  <div data-header></div>
+
+  <main id="main">
+    <div class="container">
+      <div class="page-head">
+        <div class="page-head__title">
+          <span class="eyebrow">افراد</span>
+          <h1 class="h-display">تیم افران</h1>
+        </div>
+        <p class="page-head__text" data-text="intro"></p>
+      </div>
+      <img class="wide-img" data-src="image" data-alt="image_alt" alt="" loading="lazy">
+      <div class="stats" id="stats"></div>
+    </div>
+
+    <section class="section container" aria-labelledby="founder-name">
+      <div class="founder">
+        <div class="founder__photo">
+          <img data-src="founder.photo" data-alt="founder.name" alt="">
+          <span class="dot"></span>
+        </div>
+        <div class="founder__body">
+          <span class="eyebrow" data-text="founder.role"></span>
+          <h2 class="founder__name" id="founder-name" data-text="founder.name"></h2>
+          <span class="rule"></span>
+          <div class="founder__bio" data-paras="founder.bio"></div>
+          <ul class="tags" id="founder-tags"></ul>
+          <div class="founder__links" id="founder-links"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="members-wrap" aria-labelledby="members-title">
+      <div class="container section">
+        <div class="section-head">
+          <h2 class="section-head__title"><span id="members-title">اعضای تیم</span> <span class="section-head__count" id="members-count"></span></h2>
+        </div>
+        <div class="members" id="members"></div>
+      </div>
+    </section>
+  </main>
+
+  <div data-footer></div>
+  <script src="assets/js/app.js" defer></script>
+</body>
+</html>

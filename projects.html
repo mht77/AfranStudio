@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>پروژه‌ها — استودیو افران</title>
+  <meta name="description" content="پروژه‌های استودیو طراحی و معماری افران.">
+  <meta name="theme-color" content="#58585A">
+  <link rel="icon" href="assets/images/site/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/vazirmatn-arabic-300-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body data-page="projects">
+  <a class="skip-link" href="#main">پرش به محتوا</a>
+  <div data-header></div>
+
+  <main id="main" class="container">
+    <div class="page-head">
+      <div class="page-head__title">
+        <span class="eyebrow">آثار · <span id="projects-count"></span> پروژه</span>
+        <h1 class="h-display">پروژه‌ها</h1>
+      </div>
+      <p class="page-head__text" data-text="intro"></p>
+    </div>
+
+    <div class="toolbar">
+      <div class="chips" id="project-filters" role="group" aria-label="فیلتر بر اساس خدمت"></div>
+      <div class="view-toggle" role="group" aria-label="نحوه نمایش">
+        <button type="button" id="view-grid" aria-pressed="true" aria-label="نمایش شبکه‌ای">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1" y="1" width="6" height="6"/><rect x="9" y="1" width="6" height="6"/><rect x="1" y="9" width="6" height="6"/><rect x="9" y="9" width="6" height="6"/></svg>
+        </button>
+        <button type="button" id="view-list" aria-pressed="false" aria-label="نمایش فهرستی">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 3h14M1 8h14M1 13h14"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="works" class="works" aria-live="polite"></div>
+  </main>
+
+  <div data-footer></div>
+  <script src="assets/js/app.js" defer></script>
+</body>
+</html>
