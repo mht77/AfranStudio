@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>صفحه پیدا نشد — استودیو افران</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#58585A">
+  <script>
+    // GitHub Pages serves this file for any missing URL, at any depth.
+    // Point relative links at the site root: "/<repo>/" on *.github.io, "/" on a custom domain.
+    (function () {
+      var seg = location.pathname.split("/")[1];
+      var base = /\.github\.io$/.test(location.hostname) && seg ? "/" + seg + "/" : "/";
+      document.write('<base href="' + base + '">');
+    })();
+  </script>
+  <link rel="icon" href="assets/images/site/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body data-page="404">
+  <a class="skip-link" href="#main">پرش به محتوا</a>
+  <div data-header></div>
+
+  <main id="main" class="container">
+    <section class="section cta" style="min-height: 60vh; justify-content: center">
+      <span class="eyebrow">خطای ۴۰۴</span>
+      <h1 class="cta__heading">این صفحه پیدا نشد.</h1>
+      <p class="cta__text">ممکن است نشانی را اشتباه وارد کرده باشید یا این صفحه جابه‌جا شده باشد.</p>
+      <div class="cta__actions">
+        <a class="btn" href="index.html">بازگشت به صفحه اصلی <span aria-hidden="true">⟵</span></a>
+        <a class="btn btn--outline" href="projects.html">مشاهده پروژه‌ها</a>
+      </div>
+    </section>
+  </main>
+
+  <div data-footer></div>
+  <script src="assets/js/app.js" defer></script>
+</body>
+</html>
