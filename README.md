@@ -9,7 +9,7 @@ Plain HTML, CSS and JavaScript, with no build step. It is hosted on GitHub Pages
 index.html          Home
 projects.html       Projects index (filters by service, grid / list view)
 project.html        Project detail — project.html?p=<slug>
-studio.html         Studio, process, services
+studio.html         Studio, services
 team.html           Founder and team
 contact.html        Contact details and project form
 404.html            Not-found page (served by GitHub Pages)
@@ -38,7 +38,7 @@ Everything that changes with the studio's work can be edited in the CMS:
 - page texts
 - services
 - the founder and team members
-- contact details, including WhatsApp and Instagram
+- contact details, including WhatsApp, Telegram and Instagram
 
 Things that rarely change live in code:
 

@@ -8,10 +8,10 @@
 
   // ---------- Static site structure (rarely changes; edit here, not in the CMS) ----------
   var NAV = [
-    { href: "projects.html", label: "پروژه‌ها", note: "projects", page: ["projects", "project"] },
-    { href: "studio.html", label: "استودیو", note: "درباره ما", page: ["studio"] },
-    { href: "team.html", label: "تیم افران", note: "افراد", page: ["team"] },
-    { href: "contact.html", label: "تماس", note: "شروع گفت‌وگو", page: ["contact"] }
+    { href: "projects.html", label: "پروژه‌ها", page: ["projects", "project"] },
+    { href: "studio.html", label: "استودیو", page: ["studio"] },
+    { href: "team.html", label: "تیم افران", page: ["team"] },
+    { href: "contact.html", label: "تماس", page: ["contact"] }
   ];
   var LOGO_BLOCKS =
     '<rect class="b-g" x="0" y="0" width="62" height="72"/>' +
@@ -87,6 +87,18 @@
 
   function whatsappUrl(number) { return "https://wa.me/" + String(number || "").replace(/\D/g, ""); }
 
+  // Accepts a full link, "t.me/name" or "@name".
+  function telegramUrl(value) {
+    var v = String(value || "").trim();
+    if (/^https?:\/\//i.test(v)) return v;
+    return "https://t.me/" + v.replace(/^(https?:\/\/)?(www\.)?t\.me\//i, "").replace(/^@/, "");
+  }
+
+  function telegramHandle(value) {
+    var h = telegramUrl(value).replace(/^https?:\/\/(www\.)?t\.me\//i, "").replace(/\/$/, "");
+    return h ? "@" + h : "t.me";
+  }
+
   function persianYear() {
     try { return new Intl.DateTimeFormat("fa-IR-u-ca-persian", { year: "numeric" }).format(new Date()).replace(/[^۰-۹]/g, ""); }
     catch (e) { return "۱۴۰۵"; }
@@ -119,7 +131,7 @@
   }
 
   // ---------- Header & side-panel menu ----------
-  function renderHeader(site, projects) {
+  function renderHeader(site) {
     var slot = document.querySelector("[data-header]");
     if (!slot) return;
     var over = slot.getAttribute("data-header") === "over";
@@ -127,13 +139,12 @@
     // RTL: the menu button comes first (right edge), the logo second (left edge).
     var header = el("header", { class: "site-header" + (over ? " site-header--over" : "") }, [
       el("button", { class: "menu-toggle", type: "button", "aria-expanded": "false", "aria-controls": "site-menu",
-        html: '<span class="menu-toggle__bars" aria-hidden="true"><span></span><span></span></span><span class="menu-toggle__label">منو</span>' }),
+        html: '<span class="menu-toggle__bars" aria-hidden="true"><span></span><span></span></span><span class="menu-toggle__label">Menu</span>' }),
       el("a", { class: "logo" + (over ? "" : " logo--light"), href: "index.html", "aria-label": "استودیو طراحی افران، صفحه اصلی",
         html: logoSvg() + '<span class="logo__word"><span class="logo__name">AFRAN</span><span class="logo__line"></span><span class="logo__sub">DESIGN STUDIO</span></span>' })
     ]);
     slot.replaceWith(header);
 
-    var count = (projects && projects.projects) ? projects.projects.length : 0;
     var c = site.contact || {};
     var nav = el("nav", { class: "menu__nav", "aria-label": "منوی اصلی" }, NAV.map(function (item, i) {
       var current = item.page.indexOf(page) !== -1;
@@ -141,15 +152,14 @@
         el("span", { class: "menu__link-main" }, [
           el("span", { class: "dot" + (i === 1 || i === 2 ? " dot--graphite" : "") }),
           el("span", { class: "menu__link-label", text: item.label })
-        ]),
-        el("span", { class: "menu__link-note", text: item.note === "projects" ? fa(count) + " پروژه" : item.note })
+        ])
       ]);
     }));
 
     var panel = el("div", { class: "menu__panel", role: "dialog", "aria-modal": "true", "aria-label": "منو" }, [
       el("div", { class: "menu__top" }, [
         el("button", { class: "menu__close", type: "button",
-          html: '<svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 3l14 14M17 3L3 17" stroke="currentColor" stroke-width="1.2" fill="none"/></svg> بستن' }),
+          html: '<svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 3l14 14M17 3L3 17" stroke="currentColor" stroke-width="1.2" fill="none"/></svg> Close' }),
         el("a", { class: "logo logo--light", href: "index.html", "aria-label": "صفحه اصلی",
           html: logoSvg() + '<span class="logo__word"><span class="logo__name">AFRAN</span><span class="logo__line"></span><span class="logo__sub">DESIGN STUDIO</span></span>' })
       ]),
@@ -215,7 +225,8 @@
             el("span", { class: "footer-col__title", text: "تماس" }),
             c.email ? el("a", { href: "mailto:" + c.email, text: c.email }) : null,
             c.phone ? el("a", { href: "tel:" + c.phone, dir: "ltr", style: "text-align:right", text: c.phone_display || c.phone }) : null,
-            c.whatsapp ? el("a", { href: whatsappUrl(c.whatsapp), target: "_blank", rel: "noopener", text: "واتس‌اپ ↗" }) : null
+            c.whatsapp ? el("a", { href: whatsappUrl(c.whatsapp), target: "_blank", rel: "noopener", text: "واتس‌اپ ↗" }) : null,
+            c.telegram ? el("a", { href: telegramUrl(c.telegram), target: "_blank", rel: "noopener", text: "تلگرام ↗" }) : null
           ]),
           el("div", { class: "footer-col" }, [
             el("span", { class: "footer-col__title", text: "دنبال کنید" }),
@@ -236,8 +247,8 @@
   // ---------- Shared pieces ----------
   function projectUrl(p) { return "project.html?p=" + encodeURIComponent(p.slug); }
 
-  function card(p, site, wide) {
-    return el("a", { class: "card" + (wide ? " card--wide" : ""), href: projectUrl(p) }, [
+  function card(p, site) {
+    return el("a", { class: "card", href: projectUrl(p) }, [
       el("span", { class: "card__media" }, [
         el("img", { src: p.cover, alt: p.cover_alt || p.title, loading: "lazy", decoding: "async" }),
         el("span", { class: "card__tag" }, [el("span", { class: "dot" }), serviceTitle(site, p.category)])
@@ -263,11 +274,10 @@
     clear(container);
     var options = [{ id: "all", title: "همه" }].concat(site.services || []);
     options.forEach(function (s) {
-      var n = s.id === "all" ? projects.length : projects.filter(function (p) { return p.category === s.id; }).length;
       container.appendChild(el("button", {
         class: "chip", type: "button", "aria-pressed": String(s.id === current),
         onclick: function () { onChange(s.id); }
-      }, [s.title, el("span", { class: "chip__count", text: fa(n) })]));
+      }, [s.title]));
     });
   }
 
@@ -358,7 +368,7 @@
       if (!list.length) { works.className = "works"; works.appendChild(el("p", { class: "empty", text: "پروژه‌ای در این دسته نیست." })); return; }
       if (view === "grid") {
         works.className = "works works--grid";
-        list.forEach(function (p, i) { works.appendChild(card(p, site, i % 4 === 0 || i % 4 === 3)); });
+        list.forEach(function (p) { works.appendChild(card(p, site)); });
       } else {
         works.className = "works-list";
         works.appendChild(el("div", { class: "works-list__head", "aria-hidden": "true" }, [
@@ -465,15 +475,6 @@
   pages.studio = function (site) {
     return loadJSON("content/studio.json").then(function (studio) {
       bind(document, studio);
-      var steps = document.getElementById("steps");
-      clear(steps);
-      ((studio.process && studio.process.steps) || []).forEach(function (s, i) {
-        steps.appendChild(el("li", { class: "step" }, [
-          el("span", { class: "step__num", text: fa(i + 1) }),
-          el("h3", { class: "step__title", text: s.title }),
-          el("p", { class: "step__text", text: s.text })
-        ]));
-      });
       renderServices(document.getElementById("services-list"), site, true);
     });
   };
@@ -533,6 +534,8 @@
     if (c.phone) row("تلفن", [el("a", { href: "tel:" + c.phone, dir: "ltr", text: c.phone_display || c.phone })]);
     if (c.whatsapp) row("واتس‌اپ", [el("a", { class: "u", href: whatsappUrl(c.whatsapp), target: "_blank", rel: "noopener" },
       [el("span", { dir: "ltr", text: c.whatsapp_display || c.whatsapp }), " — پیام در واتس‌اپ ↗"])]);
+    if (c.telegram) row("تلگرام", [el("a", { class: "u", href: telegramUrl(c.telegram), target: "_blank", rel: "noopener" },
+      [el("span", { dir: "ltr", text: c.telegram_display || telegramHandle(c.telegram) }), " — پیام در تلگرام ↗"])]);
     if (c.instagram || c.linkedin) row("شبکه‌ها", [
       c.instagram ? el("a", { href: c.instagram, target: "_blank", rel: "noopener", text: "اینستاگرام" }) : null,
       c.linkedin ? el("a", { href: c.linkedin, target: "_blank", rel: "noopener", text: "لینکدین" }) : null
@@ -680,7 +683,7 @@
         var meta = document.querySelector('meta[name="description"]');
         if (meta) meta.setAttribute("content", site.description);
       }
-      renderHeader(site, projects);
+      renderHeader(site);
       renderFooter(site);
       return (pages[page] || function () { return Promise.resolve(); })(site, projects);
     })
