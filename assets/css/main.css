@@ -233,18 +233,9 @@ body.menu-open { overflow: hidden; }
 .card:hover .sig .b5, .card:focus-visible .sig .b5 { left: 30px; top: 37px; width: 18px; height: 15px; }
 .empty { padding: 48px 0; color: var(--ink-soft); }
 
-/* ---------- Approach (dark) ---------- */
+/* ---------- Dark section ---------- */
 .dark { background: var(--night); color: var(--paper); }
 .dark .eyebrow { color: var(--sage-light); }
-.approach__head { display: flex; flex-wrap: wrap; gap: 32px 96px; align-items: flex-end; justify-content: space-between; }
-.approach__heading { font-weight: 200; font-size: clamp(34px, 3.8vw, 52px); line-height: 1.45; max-width: 680px; margin-top: 24px; }
-.approach__text { flex: 1 1 300px; max-width: 400px; font-size: 16px; line-height: 2; color: var(--night-text); }
-.approach__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top: 40px; border-top: 1px solid rgba(242,240,235,.18); }
-.principle { padding: 40px 0 8px 32px; display: flex; flex-direction: column; gap: 18px; }
-.principle svg { width: 48px; height: 40px; }
-.principle__num { font-size: 13px; color: var(--sage-light); }
-.principle__title { font-weight: 300; font-size: 30px; }
-.principle__text { font-size: 15px; line-height: 2; color: var(--night-text); max-width: 290px; }
 
 /* ---------- Services list ---------- */
 .services { display: flex; flex-wrap: wrap; gap: 48px 96px; }
@@ -260,7 +251,6 @@ a.service:hover { background: var(--stone); opacity: 1; }
 .dark .service__num { color: var(--sage-light); }
 .dark .service__text { color: var(--night-text); }
 .dark a.service:hover { background: rgba(242,240,235,.07); }
-.services--in-dark { margin-top: var(--section); }
 
 /* ---------- CTA ---------- */
 .cta { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 28px; }
@@ -461,7 +451,6 @@ html.fx-enter body::before { background: linear-gradient(var(--sage) 0 20%, var(
   .site-header { padding-block: 22px; }
   .intro__body { padding-top: 0; }
   .split__img { height: 420px; }
-  .principle { padding-left: 0; }
   .site-footer__inner { padding-block: 64px 32px; gap: 56px; }
   .footer-brand img { width: 104px; }
   .menu__panel { width: 100%; padding: 22px var(--header-pad) 32px; }
