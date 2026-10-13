@@ -247,9 +247,15 @@
           el("span", { class: "card__title", text: p.title }),
           el("span", { class: "card__place", text: p.location })
         ]),
-        el("span", { class: "arrow", "aria-hidden": "true", text: "⟵" })
+        signature(p.category)
       ])
     ]);
+  }
+
+  // The logo's five blocks in a per-category arrangement; on hover they snap back into the logo (CSS).
+  function signature(category) {
+    return el("span", { class: "sig sig--" + (category || "none"), "aria-hidden": "true" },
+      ["b1", "b2", "b3", "b4", "b5"].map(function (b) { return el("i", { class: b }); }));
   }
 
   // Filter chips: "all" + one per service. onChange(id) is called with the chosen id.
@@ -590,6 +596,82 @@
     return Promise.resolve();
   };
 
+  // ---------- Motion: first-visit intro and page transitions ----------
+  // The inline script in each page's <head> adds html.fx-intro (first page of a visit) or
+  // html.fx-enter (arrived through a transition), which paints a cover before this script runs.
+  var root = document.documentElement;
+  var reduceMotion = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var markReady;
+  var ready = new Promise(function (resolve) { markReady = resolve; });
+
+  function store(key, value) {
+    try { if (value) sessionStorage.setItem(key, value); else sessionStorage.removeItem(key); } catch (e) { /* storage blocked */ }
+  }
+  function wait(ms) { return new Promise(function (resolve) { setTimeout(resolve, ms); }); }
+  // Wait at least `min` ms, and for the content up to `max` ms.
+  function settle(min, max) { return Promise.all([wait(min), Promise.race([ready, wait(max)])]); }
+
+  function bars() {
+    return el("div", { class: "fx-bars", "aria-hidden": "true" },
+      ["b1", "b2", "b3", "b4", "b5"].map(function (b) { return el("i", { class: b }); }));
+  }
+
+  function playIntro() {
+    var intro = el("div", { class: "fx-intro", "aria-hidden": "true" }, [
+      el("div", { class: "fx-intro__logo" }, [
+        el("img", { class: "fx-intro__word", src: "assets/images/site/logo-white.svg", alt: "" })
+      ].concat(["b1", "b2", "b3", "b4", "b5"].map(function (b) { return el("i", { class: b }); })))
+    ]);
+    document.body.appendChild(intro);
+    root.classList.remove("fx-intro");
+    store("afran-intro", "1");
+    settle(2000, 3000).then(function () {
+      intro.classList.add("is-done");
+      setTimeout(function () { intro.remove(); }, 600);
+    });
+  }
+
+  function playEnter() {
+    var cover = bars();
+    document.body.appendChild(cover);
+    root.classList.remove("fx-enter");
+    store("afran-go", null);
+    settle(80, 1200).then(function () {
+      cover.classList.add("is-out");
+      setTimeout(function () { cover.remove(); }, 900);
+    });
+  }
+
+  function leave(href) {
+    var cover = bars();
+    cover.classList.add("is-in");
+    document.body.appendChild(cover);
+    store("afran-go", "1");
+    setTimeout(function () { location.href = href; }, 620);
+  }
+
+  if (root.classList.contains("fx-intro")) playIntro();
+  else if (root.classList.contains("fx-enter")) playEnter();
+
+  if (!reduceMotion) {
+    document.addEventListener("click", function (e) {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var a = e.target.closest && e.target.closest("a[href]");
+      if (!a || a.target || a.hasAttribute("download")) return;
+      var url = new URL(a.href, location.href);
+      if (url.origin !== location.origin || !/(\.html|\/)$/.test(url.pathname)) return;
+      if (url.pathname === location.pathname && url.search === location.search) return; // same page or #anchor
+      e.preventDefault();
+      leave(url.href);
+    });
+  }
+  // Coming back through the browser's back/forward cache: drop a cover left from leaving.
+  window.addEventListener("pageshow", function (e) {
+    if (!e.persisted) return;
+    store("afran-go", null);
+    document.querySelectorAll(".fx-bars, .fx-intro").forEach(function (n) { n.remove(); });
+  });
+
   // ---------- Boot ----------
   Promise.all([loadJSON("content/site.json"), loadJSON("content/projects.json")])
     .then(function (res) {
@@ -602,8 +684,9 @@
       renderFooter(site);
       return (pages[page] || function () { return Promise.resolve(); })(site, projects);
     })
-    .then(function () { document.documentElement.classList.add("is-ready"); })
+    .then(function () { document.documentElement.classList.add("is-ready"); markReady(); })
     .catch(function (err) {
+      markReady();
       console.error(err);
       var main = document.getElementById("main");
       if (main) main.insertBefore(el("p", { class: "container empty", text: "بارگذاری محتوا ممکن نشد. لطفاً صفحه را دوباره بارگذاری کنید." }), main.firstChild);

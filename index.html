@@ -6,6 +6,17 @@
   <title>استودیو طراحی و معماری افران</title>
   <meta name="description" content="استودیو طراحی و معماری افران — طراحی سازه، فضای مسکونی، برنامه‌ریزی شهری و طراحی داخلی.">
   <meta name="theme-color" content="#58585A">
+  <script>
+    // Mark the first page of a visit (intro) or a page reached through a transition, so CSS covers it
+    // from the first paint until app.js takes over (see "Motion" in app.js).
+    (function () {
+      try {
+        if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        var s = sessionStorage, c = !s.getItem("afran-intro") ? "fx-intro" : s.getItem("afran-go") ? "fx-enter" : "";
+        if (c) document.documentElement.classList.add(c);
+      } catch (e) { /* no storage: no transitions */ }
+    })();
+  </script>
   <meta property="og:type" content="website">
   <meta property="og:title" content="استودیو طراحی و معماری افران">
   <meta property="og:image" content="assets/images/projects/glass-office-dusk.jpg">

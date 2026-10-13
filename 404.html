@@ -7,6 +7,17 @@
   <meta name="robots" content="noindex">
   <meta name="theme-color" content="#58585A">
   <script>
+    // Mark the first page of a visit (intro) or a page reached through a transition, so CSS covers it
+    // from the first paint until app.js takes over (see "Motion" in app.js).
+    (function () {
+      try {
+        if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        var s = sessionStorage, c = !s.getItem("afran-intro") ? "fx-intro" : s.getItem("afran-go") ? "fx-enter" : "";
+        if (c) document.documentElement.classList.add(c);
+      } catch (e) { /* no storage: no transitions */ }
+    })();
+  </script>
+  <script>
     // GitHub Pages serves this file for any missing URL, at any depth.
     // Point relative links at the site root: "/<repo>/" on *.github.io, "/" on a custom domain.
     (function () {
