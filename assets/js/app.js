@@ -19,10 +19,6 @@
     '<rect class="b-w" x="0" y="93" width="152" height="70"/>' +
     '<rect class="b-w" x="0" y="184" width="95" height="73"/>' +
     '<rect class="b-g" x="152" y="184" width="87" height="73"/>';
-  var GLYPHS = [ // small two-block marks for the approach items
-    [[34, 0, 14, 14], [0, 0, 28, 40]], [[0, 0, 14, 14], [0, 20, 48, 20]],
-    [[34, 26, 14, 14], [0, 0, 48, 20]], [[0, 26, 14, 14], [20, 0, 28, 40]]
-  ];
 
   // ---------- Helpers ----------
   var page = document.body.getAttribute("data-page");
@@ -230,8 +226,7 @@
           ]),
           el("div", { class: "footer-col" }, [
             el("span", { class: "footer-col__title", text: "دنبال کنید" }),
-            c.instagram ? el("a", { href: c.instagram, target: "_blank", rel: "noopener", text: "اینستاگرام" }) : null,
-            c.linkedin ? el("a", { href: c.linkedin, target: "_blank", rel: "noopener", text: "لینکدین" }) : null
+            c.instagram ? el("a", { href: c.instagram, target: "_blank", rel: "noopener", text: "اینستاگرام" }) : null
           ])
         ]),
         el("div", { class: "site-footer__bottom" }, [
@@ -321,18 +316,6 @@
         count.textContent = "(" + fa(list.length) + ")";
       }
       draw();
-
-      var principles = document.getElementById("principles");
-      clear(principles);
-      ((home.approach && home.approach.items) || []).forEach(function (item, i) {
-        var g = GLYPHS[i % GLYPHS.length];
-        principles.appendChild(el("div", { class: "principle" }, [
-          el("span", { html: '<svg viewBox="0 0 48 40" aria-hidden="true"><rect x="' + g[0][0] + '" y="' + g[0][1] + '" width="' + g[0][2] + '" height="' + g[0][3] + '" fill="#9DB387"/><rect x="' + g[1][0] + '" y="' + g[1][1] + '" width="' + g[1][2] + '" height="' + g[1][3] + '" fill="#F2F0EB"/></svg>' }),
-          el("span", { class: "principle__num", text: fa(i + 1) }),
-          el("h3", { class: "principle__title", text: item.title }),
-          el("p", { class: "principle__text", text: item.text })
-        ]));
-      });
 
       renderServices(document.getElementById("services-list"), site, true);
     });
@@ -496,7 +479,6 @@
       var links = document.getElementById("founder-links");
       clear(links);
       if (f.email) links.appendChild(el("a", { href: "mailto:" + f.email, text: "ایمیل" }));
-      if (f.linkedin) links.appendChild(el("a", { href: f.linkedin, target: "_blank", rel: "noopener", text: "لینکدین" }));
 
       var members = document.getElementById("members");
       var tones = [["#D6D2C9", "#58585A"], ["#C9D4BC", "#F2F0EB"], ["#58585A", "#E6E4DF"], ["#E2DED6", "#9DB387"]];
@@ -536,9 +518,8 @@
       [el("span", { dir: "ltr", text: c.whatsapp_display || c.whatsapp }), " — پیام در واتس‌اپ ↗"])]);
     if (c.telegram) row("تلگرام", [el("a", { class: "u", href: telegramUrl(c.telegram), target: "_blank", rel: "noopener" },
       [el("span", { dir: "ltr", text: c.telegram_display || telegramHandle(c.telegram) }), " — پیام در تلگرام ↗"])]);
-    if (c.instagram || c.linkedin) row("شبکه‌ها", [
-      c.instagram ? el("a", { href: c.instagram, target: "_blank", rel: "noopener", text: "اینستاگرام" }) : null,
-      c.linkedin ? el("a", { href: c.linkedin, target: "_blank", rel: "noopener", text: "لینکدین" }) : null
+    if (c.instagram) row("شبکه‌ها", [
+      el("a", { href: c.instagram, target: "_blank", rel: "noopener", text: "اینستاگرام" })
     ]);
 
     var types = document.getElementById("project-types");

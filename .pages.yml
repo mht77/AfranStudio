@@ -119,19 +119,6 @@ content:
       - name: projects_heading
         label: تیتر پروژه‌های منتخب
         type: string
-      - name: approach
-        label: رویکرد
-        type: object
-        fields:
-          - { name: heading, label: تیتر, type: text }
-          - { name: text, label: متن, type: text }
-          - name: items
-            label: موارد
-            type: object
-            list: true
-            fields:
-              - { name: title, label: عنوان, type: string }
-              - { name: text, label: متن, type: text }
       - name: services_heading
         label: تیتر خدمات
         type: string
@@ -185,7 +172,6 @@ content:
             type: text
           - { name: tags, label: برچسب‌ها, type: string, list: true }
           - { name: email, label: ایمیل, type: string }
-          - { name: linkedin, label: لینکدین, type: string }
       - name: members
         label: اعضای تیم
         type: object
@@ -222,7 +208,6 @@ content:
           - { name: telegram, label: "لینک تلگرام (مثل https://t.me/username)", type: string }
           - { name: telegram_display, label: "تلگرام (نمایشی، اختیاری، مثل @username)", type: string }
           - { name: instagram, label: لینک اینستاگرام, type: string }
-          - { name: linkedin, label: لینک لینکدین, type: string }
       - name: services
         label: خدمات
         type: object
