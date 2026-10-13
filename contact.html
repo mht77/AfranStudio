@@ -6,6 +6,17 @@
   <title>تماس — استودیو افران</title>
   <meta name="description" content="تماس با استودیو طراحی و معماری افران و شروع یک پروژه.">
   <meta name="theme-color" content="#58585A">
+  <script>
+    // Mark the first page of a visit (intro) or a page reached through a transition, so CSS covers it
+    // from the first paint until app.js takes over (see "Motion" in app.js).
+    (function () {
+      try {
+        if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        var s = sessionStorage, c = !s.getItem("afran-intro") ? "fx-intro" : s.getItem("afran-go") ? "fx-enter" : "";
+        if (c) document.documentElement.classList.add(c);
+      } catch (e) { /* no storage: no transitions */ }
+    })();
+  </script>
   <link rel="icon" href="assets/images/site/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="assets/fonts/vazirmatn-arabic-300-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/main.css">
