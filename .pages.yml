@@ -135,14 +135,6 @@ content:
       - name: services_heading
         label: تیتر خدمات
         type: string
-      - name: quote
-        label: نقل‌قول تمام‌عرض
-        type: object
-        fields:
-          - { name: text, label: متن, type: text }
-          - { name: caption, label: زیرنویس, type: string }
-          - { name: image, label: تصویر پس‌زمینه, type: image }
-          - { name: image_alt, label: توضیح تصویر (alt), type: string }
       - name: cta
         label: دعوت به تماس
         type: object
@@ -161,19 +153,6 @@ content:
       - { name: image, label: تصویر, type: image }
       - { name: image_alt, label: توضیح تصویر (alt), type: string }
       - { name: mark_text, label: متن درباره نشان, type: text }
-      - name: process
-        label: فرایند
-        type: object
-        fields:
-          - { name: heading, label: تیتر, type: string }
-          - { name: text, label: متن, type: text }
-          - name: steps
-            label: مراحل
-            type: object
-            list: true
-            fields:
-              - { name: title, label: عنوان, type: string }
-              - { name: text, label: متن, type: text }
       - { name: services_heading, label: تیتر خدمات, type: string }
       - { name: cta_heading, label: تیتر دعوت به تماس, type: text }
 
@@ -240,6 +219,8 @@ content:
           - { name: phone_display, label: تلفن (نمایشی), type: string }
           - { name: whatsapp, label: "واتس‌اپ (فقط عدد با کد کشور، مثل 989120000000)", type: string }
           - { name: whatsapp_display, label: واتس‌اپ (نمایشی), type: string }
+          - { name: telegram, label: "لینک تلگرام (مثل https://t.me/username)", type: string }
+          - { name: telegram_display, label: "تلگرام (نمایشی، اختیاری، مثل @username)", type: string }
           - { name: instagram, label: لینک اینستاگرام, type: string }
           - { name: linkedin, label: لینک لینکدین, type: string }
       - name: services
