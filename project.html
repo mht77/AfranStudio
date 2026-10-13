@@ -23,31 +23,9 @@
 </head>
 <body data-page="project">
   <a class="skip-link" href="#main">پرش به محتوا</a>
-  <div data-header="over"></div>
+  <div data-header></div>
 
   <main id="main">
-    <section class="project-hero">
-      <img class="hero__img" data-src="hero" data-alt="hero_alt" alt="">
-      <div class="hero__shade"></div>
-      <div class="project-hero__bottom">
-        <div>
-          <a class="project-hero__back" href="projects.html">→ همه پروژه‌ها</a>
-          <h1 class="project-hero__title" data-text="title"></h1>
-        </div>
-        <p class="project-hero__place"><span class="dot"></span><span data-text="location"></span></p>
-      </div>
-    </section>
-
-    <section class="section container">
-      <div class="story">
-        <dl class="facts" id="facts"></dl>
-        <div class="story__body">
-          <p class="story__summary" data-text="summary"></p>
-          <div data-paras="description" style="display: flex; flex-direction: column; gap: 22px"></div>
-        </div>
-      </div>
-    </section>
-
     <section class="slideshow" id="slideshow" aria-roledescription="carousel" aria-label="گالری تصاویر پروژه">
       <div class="slideshow__stage" tabindex="0" aria-label="برای جابه‌جایی از کلیدهای جهت استفاده کنید">
         <button class="slideshow__zone slideshow__zone--prev" type="button" data-prev aria-label="تصویر قبلی"></button>
@@ -63,6 +41,23 @@
             <button type="button" data-next aria-label="تصویر بعدی">←</button>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="project-head">
+        <a class="project-head__back" href="projects.html">→ همه پروژه‌ها</a>
+        <div class="project-head__row">
+          <h1 class="project-head__title" data-text="title"></h1>
+          <p class="project-head__place"><span class="dot"></span><span data-text="location"></span></p>
+        </div>
+      </div>
+      <div class="story">
+        <div class="story__body">
+          <p class="story__summary" data-text="summary"></p>
+          <div data-paras="description" style="display: flex; flex-direction: column; gap: 22px"></div>
+        </div>
+        <dl class="facts" id="facts"></dl>
       </div>
     </section>
 
