@@ -158,9 +158,9 @@ body.menu-open { overflow: hidden; }
 @media (max-width: 640px) { .hero__subtitle { white-space: normal; } }
 
 /* ---------- Home: intro ---------- */
-.intro { display: flex; flex-wrap: wrap; gap: 24px 96px; align-items: flex-start; }
+.intro { display: flex; flex-wrap: wrap; gap: 24px 96px; align-items: center; }
 .intro__head { flex: 1 1 340px; display: flex; flex-direction: column; gap: 28px; }
-.intro__body { flex: 1 1 380px; padding-top: 28px; }
+.intro__body { flex: 1 1 380px; }
 .intro__body .link-arrow { margin-top: 20px; }
 
 /* ---------- Section head (title + link) ---------- */
@@ -338,10 +338,14 @@ body.menu-open { overflow: hidden; }
 .next-project__place .dot { width: 8px; height: 8px; }
 
 /* ---------- Studio ---------- */
-.split { max-width: 1440px; margin-inline: auto; padding-inline: var(--gutter); display: flex; flex-wrap: wrap; gap: 28px; align-items: stretch; }
-.split__img { flex: 2 1 560px; min-width: 0; height: 640px; object-fit: cover; }
+.split-head, .split { max-width: 1440px; margin-inline: auto; padding-inline: var(--gutter); display: grid; grid-template-columns: 2fr 1fr; gap: 28px; }
+.split-head { align-items: start; padding-block: clamp(24px, 3vw, 40px) clamp(20px, 2.4vw, 32px); }
+.split-head__title { font-size: clamp(30px, 3.8vw, 54px); line-height: 1.4; }
+.split-head__text { font-size: 17px; line-height: 2.1; color: var(--ink-soft); }
+.split { align-items: stretch; }
+.split__img { width: 100%; min-width: 0; height: 640px; object-fit: cover; }
 .split + .dark { margin-top: var(--section); }
-.mark-card { flex: 1 1 340px; background: var(--graphite); color: #fff; padding: 32px 32px; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; }
+.mark-card { background: var(--graphite); color: #fff; padding: 32px 32px; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; }
 .mark-card svg { width: 120px; height: 130px; }
 .mark-card .b-g { fill: var(--sage); } .mark-card .b-w { fill: #fff; }
 .mark-card .eyebrow { color: var(--sage-mist); margin-bottom: 16px; }
@@ -443,7 +447,7 @@ html.fx-enter body::before { background: var(--graphite) var(--fx-mark) center /
 /* ---------- Responsive ---------- */
 @media (max-width: 860px) {
   .site-header { padding-block: 22px; }
-  .intro__body { padding-top: 0; }
+  .split-head, .split { grid-template-columns: 1fr; }
   .split__img { height: 420px; }
   .service { padding-left: 0; }
   .site-footer__inner { padding-block: 40px 24px; gap: 32px; }
