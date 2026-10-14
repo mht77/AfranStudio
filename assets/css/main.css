@@ -166,7 +166,6 @@ body.menu-open { overflow: hidden; }
 /* ---------- Section head (title + link) ---------- */
 .section-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; padding-bottom: 20px; border-bottom: 1px solid var(--line); }
 .section-head__title { font-size: 16px; font-weight: 500; }
-.section-head__count { color: var(--ink-soft); font-weight: 300; }
 .section-head a { display: inline-flex; align-items: center; gap: 16px; font-size: 14px; min-height: 44px; }
 
 /* ---------- Filter chips ---------- */
@@ -235,20 +234,20 @@ body.menu-open { overflow: hidden; }
 .dark { background: var(--night); color: var(--paper); }
 .dark .eyebrow { color: var(--sage-light); }
 
-/* ---------- Services list ---------- */
-.services { display: flex; flex-wrap: wrap; gap: 24px 96px; }
-.services__head { flex: 1 1 300px; display: flex; flex-direction: column; gap: 24px; }
-.services__list { flex: 2 1 560px; border-top: 1px solid var(--line); }
-.service { display: flex; align-items: baseline; gap: 32px; padding: 30px 12px; border-bottom: 1px solid var(--line); flex-wrap: wrap; transition: background .25s; }
-a.service:hover { background: var(--stone); opacity: 1; }
-.service__num { font-size: 13px; color: var(--ink-soft); width: 32px; }
-.service__title { flex: 1 1 220px; font-size: 30px; font-weight: 300; line-height: 1.3; }
-.service__text { flex: 1 1 260px; font-size: 15px; line-height: 2; color: var(--ink-soft); }
-.dark .services__list { border-color: rgba(242,240,235,.2); }
-.dark .service { border-color: rgba(242,240,235,.2); }
+/* ---------- Services: four steps, each with a part of the logo ---------- */
+.services { display: flex; flex-direction: column; gap: 40px; }
+.services__head { display: flex; flex-direction: column; gap: 24px; }
+.services__list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); border-top: 1px solid var(--line); }
+.service { padding: 40px 0 8px 32px; display: flex; flex-direction: column; gap: 18px; }
+.service svg { width: 48px; height: 40px; }
+.service__num { font-size: 13px; color: var(--ink-soft); }
+.service__title { font-weight: 300; font-size: 30px; line-height: 1.3; }
+.service__text { font-size: 15px; line-height: 2; color: var(--ink-soft); max-width: 290px; }
+.dark .services__list { border-color: rgba(242,240,235,.18); }
 .dark .service__num { color: var(--sage-light); }
 .dark .service__text { color: var(--night-text); }
-.dark a.service:hover { background: rgba(242,240,235,.07); }
+.dark a.service { transition: opacity .25s; }
+.dark a.service:hover { opacity: .75; }
 
 /* ---------- CTA ---------- */
 .cta { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px; }
@@ -410,9 +409,10 @@ label.chip:has(input:focus-visible) { outline: 2px solid var(--sage-deep); outli
 
 /* ---------- Motion: first-visit intro and page transitions (driven by app.js) ---------- */
 /* Cover painted by the <head> script before app.js runs; hides itself if app.js never does. */
+:root { --fx-mark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 239 257'%3E%3Cg fill='%239DB387'%3E%3Crect x='0' y='0' width='62' height='72'/%3E%3Crect x='152' y='184' width='87' height='73'/%3E%3C/g%3E%3Cg fill='%23fff'%3E%3Crect x='117' y='0' width='122' height='72'/%3E%3Crect x='0' y='93' width='152' height='70'/%3E%3Crect x='0' y='184' width='95' height='73'/%3E%3C/g%3E%3C/svg%3E"); }
 html.fx-intro body::before, html.fx-enter body::before { content: ""; position: fixed; inset: 0; z-index: 220; animation: fx-failsafe 0s 4s forwards; }
 html.fx-intro body::before { background: var(--graphite); }
-html.fx-enter body::before { background: linear-gradient(var(--sage) 0 20%, var(--graphite) 20% 80%, var(--sage) 80%); }
+html.fx-enter body::before { background: var(--graphite) var(--fx-mark) center / 40px auto no-repeat; }
 @keyframes fx-failsafe { to { visibility: hidden; } }
 
 .fx-intro { position: fixed; inset: 0; z-index: 210; display: flex; align-items: center; justify-content: center; background: var(--graphite); transition: opacity .5s var(--ease), visibility .5s; }
@@ -431,24 +431,21 @@ html.fx-enter body::before { background: linear-gradient(var(--sage) 0 20%, var(
 @keyframes fx-from-left { from { transform: translateX(-80px); opacity: 0; } }
 @keyframes fx-fade { from { opacity: 0; transform: translateY(6px); } }
 
-.fx-bars { position: fixed; inset: 0; z-index: 200; display: flex; flex-direction: column; }
-.fx-bars i { flex: 1; margin-bottom: -1px; background: var(--graphite); transition: transform .5s cubic-bezier(.65, 0, .35, 1); }
-.fx-bars .b1, .fx-bars .b5 { background: var(--sage); }
-.fx-bars .b5 { margin-bottom: 0; }
-.fx-bars .b2 { transition-delay: .05s; animation-delay: .05s; }
-.fx-bars .b3 { transition-delay: .1s; animation-delay: .1s; }
-.fx-bars .b4 { transition-delay: .15s; animation-delay: .15s; }
-.fx-bars .b5 { transition-delay: .2s; animation-delay: .2s; }
-.fx-bars.is-in i { animation-name: fx-bar-in; animation-duration: .42s; animation-timing-function: cubic-bezier(.65, 0, .35, 1); animation-fill-mode: both; }
-.fx-bars.is-out { pointer-events: none; }
-.fx-bars.is-out i { transform: translateX(-101%); }
-@keyframes fx-bar-in { from { transform: translateX(101%); } }
+/* Page transition: a graphite veil with the small logo mark fades over the page, then lifts on the next one. */
+.fx-veil { position: fixed; inset: 0; z-index: 200; background: var(--graphite); transition: opacity .45s var(--ease); }
+.fx-veil__mark { position: absolute; inset: 0; background: var(--fx-mark) center / 40px auto no-repeat; transition: opacity .25s var(--ease); }
+.fx-veil.is-in { animation: fx-veil-in .28s var(--ease) both; }
+.fx-veil.is-in .fx-veil__mark { animation: fx-veil-in .24s .08s var(--ease) both; }
+.fx-veil.is-out { opacity: 0; pointer-events: none; }
+.fx-veil.is-out .fx-veil__mark { opacity: 0; }
+@keyframes fx-veil-in { from { opacity: 0; } }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 860px) {
   .site-header { padding-block: 22px; }
   .intro__body { padding-top: 0; }
   .split__img { height: 420px; }
+  .service { padding-left: 0; }
   .site-footer__inner { padding-block: 40px 24px; gap: 32px; }
   .footer-brand img { width: 104px; }
   .menu__panel { width: 100%; padding: 22px var(--header-pad) 32px; }

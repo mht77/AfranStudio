@@ -19,6 +19,10 @@
     '<rect class="b-w" x="0" y="93" width="152" height="70"/>' +
     '<rect class="b-w" x="0" y="184" width="95" height="73"/>' +
     '<rect class="b-g" x="152" y="184" width="87" height="73"/>';
+  var GLYPHS = [ // small two-block marks, one per service: [[x, y, w, h] sage, [x, y, w, h] light]
+    [[34, 0, 14, 14], [0, 0, 28, 40]], [[0, 0, 14, 14], [0, 20, 48, 20]],
+    [[34, 26, 14, 14], [0, 0, 48, 20]], [[0, 26, 14, 14], [20, 0, 28, 40]]
+  ];
 
   // ---------- Helpers ----------
   var page = document.body.getAttribute("data-page");
@@ -279,11 +283,12 @@
   function renderServices(list, site, linked) {
     clear(list);
     (site.services || []).forEach(function (s, i) {
+      var g = GLYPHS[i % GLYPHS.length];
       list.appendChild(el(linked ? "a" : "div", { class: "service", href: linked ? "projects.html?c=" + encodeURIComponent(s.id) : null }, [
+        el("span", { html: '<svg viewBox="0 0 48 40" aria-hidden="true"><rect x="' + g[0][0] + '" y="' + g[0][1] + '" width="' + g[0][2] + '" height="' + g[0][3] + '" fill="#9DB387"/><rect x="' + g[1][0] + '" y="' + g[1][1] + '" width="' + g[1][2] + '" height="' + g[1][3] + '" fill="#F2F0EB"/></svg>' }),
         el("span", { class: "service__num", text: fa(i + 1) }),
         el("span", { class: "service__title", text: s.title }),
-        el("span", { class: "service__text", text: s.text }),
-        linked ? el("span", { class: "arrow", "aria-hidden": "true", text: "⟵" }) : null
+        el("span", { class: "service__text", text: s.text })
       ]));
     });
   }
@@ -298,7 +303,6 @@
       var filter = "all";
       var chips = document.getElementById("home-filters");
       var grid = document.getElementById("home-cards");
-      var count = document.getElementById("home-count");
 
       function draw() {
         var list;
@@ -313,7 +317,6 @@
         clear(grid);
         list.forEach(function (p) { grid.appendChild(card(p, site)); });
         if (!list.length) grid.appendChild(el("p", { class: "empty", text: "پروژه‌ای در این دسته نیست." }));
-        count.textContent = "(" + fa(list.length) + ")";
       }
       draw();
 
@@ -332,7 +335,6 @@
     var works = document.getElementById("works");
     var gridBtn = document.getElementById("view-grid");
     var listBtn = document.getElementById("view-list");
-    document.getElementById("projects-count").textContent = fa(all.length);
 
     function syncUrl() {
       var q = new URLSearchParams();
@@ -595,9 +597,8 @@
   // Wait at least `min` ms, and for the content up to `max` ms.
   function settle(min, max) { return Promise.all([wait(min), Promise.race([ready, wait(max)])]); }
 
-  function bars() {
-    return el("div", { class: "fx-bars", "aria-hidden": "true" },
-      ["b1", "b2", "b3", "b4", "b5"].map(function (b) { return el("i", { class: b }); }));
+  function veil() {
+    return el("div", { class: "fx-veil", "aria-hidden": "true" }, [el("div", { class: "fx-veil__mark" })]);
   }
 
   function playIntro() {
@@ -616,22 +617,22 @@
   }
 
   function playEnter() {
-    var cover = bars();
+    var cover = veil();
     document.body.appendChild(cover);
     root.classList.remove("fx-enter");
     store("afran-go", null);
-    settle(80, 1200).then(function () {
+    settle(60, 1200).then(function () {
       cover.classList.add("is-out");
-      setTimeout(function () { cover.remove(); }, 900);
+      setTimeout(function () { cover.remove(); }, 500);
     });
   }
 
   function leave(href) {
-    var cover = bars();
+    var cover = veil();
     cover.classList.add("is-in");
     document.body.appendChild(cover);
     store("afran-go", "1");
-    setTimeout(function () { location.href = href; }, 620);
+    setTimeout(function () { location.href = href; }, 320);
   }
 
   if (root.classList.contains("fx-intro")) playIntro();
@@ -653,7 +654,7 @@
   window.addEventListener("pageshow", function (e) {
     if (!e.persisted) return;
     store("afran-go", null);
-    document.querySelectorAll(".fx-bars, .fx-intro").forEach(function (n) { n.remove(); });
+    document.querySelectorAll(".fx-veil, .fx-intro").forEach(function (n) { n.remove(); });
   });
 
   // ---------- Boot ----------
